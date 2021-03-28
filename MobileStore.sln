@@ -21,21 +21,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{4D89F6BD-53B7-4582-8452-2E9260CDDB42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileStore.Services.Identity.Application", "src\Services\Identity\Core\Application\MobileStore.Services.Identity.Application\MobileStore.Services.Identity.Application.csproj", "{865B4FB0-0C0A-4374-9177-8688F4CF2897}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileStore.Services.Identity.Application", "src\Services\Identity\Core\Application\MobileStore.Services.Identity.Application\MobileStore.Services.Identity.Application.csproj", "{865B4FB0-0C0A-4374-9177-8688F4CF2897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileStore.Services.Identity.Domain", "src\Services\Identity\Core\Domain\MobileStore.Services.Identity.Domain\MobileStore.Services.Identity.Domain.csproj", "{46E1B06B-52D2-4888-ADEB-401C8881F1B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileStore.Services.Identity.Domain", "src\Services\Identity\Core\Domain\MobileStore.Services.Identity.Domain\MobileStore.Services.Identity.Domain.csproj", "{46E1B06B-52D2-4888-ADEB-401C8881F1B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{173A5518-4FCD-433F-8872-918FA612D1BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileStore.Services.Identity.Infrastructure", "src\Services\Identity\Infrastructure\MobileStore.Services.Identity.Infrastructure\MobileStore.Services.Identity.Infrastructure.csproj", "{2ABC8F71-5FAD-4BE3-B23B-9E3C30AC4B42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileStore.Services.Identity.Infrastructure", "src\Services\Identity\Infrastructure\MobileStore.Services.Identity.Infrastructure\MobileStore.Services.Identity.Infrastructure.csproj", "{2ABC8F71-5FAD-4BE3-B23B-9E3C30AC4B42}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{A575D194-DC95-4EF1-AF85-A288ECD08EEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileStore.Services.Identity.Persistence", "src\Services\Identity\Persistence\MobileStore.Services.Identity.Persistence\MobileStore.Services.Identity.Persistence.csproj", "{683182C3-D4D3-4A16-A673-3840BE2614FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileStore.Services.Identity.Persistence", "src\Services\Identity\Persistence\MobileStore.Services.Identity.Persistence\MobileStore.Services.Identity.Persistence.csproj", "{683182C3-D4D3-4A16-A673-3840BE2614FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{C114ED06-446A-4929-B018-6C4EA9A231BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileStore.Services.Identity.WebApi", "src\Services\Identity\WebApi\MobileStore.Services.Identity.WebApi\MobileStore.Services.Identity.WebApi.csproj", "{2D9204EA-E915-4E81-A47A-C256E7962530}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileStore.Services.Identity.WebApi", "src\Services\Identity\WebApi\MobileStore.Services.Identity.WebApi\MobileStore.Services.Identity.WebApi.csproj", "{2D9204EA-E915-4E81-A47A-C256E7962530}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{9B491EF4-01A9-4113-B13A-C97408A8654E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileStore.BuildingBlocks.Shared.Shared", "src\BuildingBlocks\Shared\MobileStore.BuildingBlocks.Shared.Shared\MobileStore.BuildingBlocks.Shared.Shared.csproj", "{B9FEEF3A-F5B8-491C-91BB-672549C0A6A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,10 @@ Global
 		{2D9204EA-E915-4E81-A47A-C256E7962530}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D9204EA-E915-4E81-A47A-C256E7962530}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D9204EA-E915-4E81-A47A-C256E7962530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FEEF3A-F5B8-491C-91BB-672549C0A6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FEEF3A-F5B8-491C-91BB-672549C0A6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FEEF3A-F5B8-491C-91BB-672549C0A6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FEEF3A-F5B8-491C-91BB-672549C0A6A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +99,8 @@ Global
 		{683182C3-D4D3-4A16-A673-3840BE2614FF} = {A575D194-DC95-4EF1-AF85-A288ECD08EEC}
 		{C114ED06-446A-4929-B018-6C4EA9A231BD} = {2456F62C-49A8-4D61-85D2-98B26860E2D7}
 		{2D9204EA-E915-4E81-A47A-C256E7962530} = {C114ED06-446A-4929-B018-6C4EA9A231BD}
+		{9B491EF4-01A9-4113-B13A-C97408A8654E} = {5FC473FD-F79D-425D-B30F-5FB65EEC1C28}
+		{B9FEEF3A-F5B8-491C-91BB-672549C0A6A9} = {9B491EF4-01A9-4113-B13A-C97408A8654E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCE5AB39-7BDF-4D35-B34E-514180D794AC}

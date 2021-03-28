@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BuildingBlocks\Shared\MobileStore.BuildingBlocks.Shared.Shared\MobileStore.BuildingBlocks.Shared.Shared.csproj" />
+    <ProjectReference Include="..\..\Domain\MobileStore.Services.Identity.Domain\MobileStore.Services.Identity.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
