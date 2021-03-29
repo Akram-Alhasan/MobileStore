@@ -13,7 +13,6 @@ using Microsoft.IdentityModel.Tokens;
 using MobileStore.Services.Identity.Application.Commands;
 using MobileStore.Services.Identity.Domain.Entities;
 using MobileStore.Services.Identity.WebApi.InputModel;
-using MobileStore.Services.Identity.WebApi.Settings;
 
 namespace MobileStore.Services.Identity.WebApi.Controllers
 {
@@ -23,18 +22,15 @@ namespace MobileStore.Services.Identity.WebApi.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
-        private readonly JwtSettings _jwtSettings;
         private readonly IMediator _mediator;  
 
         public AuthController(
             UserManager<User> userManager,
             RoleManager<Role> roleManager,
-            IOptionsSnapshot<JwtSettings> jwtSettings,
             IMediator mediator)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            _jwtSettings = jwtSettings.Value;
             _mediator = mediator; 
         }
 
@@ -49,5 +45,18 @@ namespace MobileStore.Services.Identity.WebApi.Controllers
             return BadRequest(result.Errors);
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginCommand command)
+        {
+            var result =await  _mediator.Send(command);
+            if(result.Succeeded)
+            {
+                return Ok(new
+                {
+                    token = result.Payload
+                });
+            }
+            return BadRequest(result.Errors);
+        }
     }
 }

@@ -11,9 +11,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MobileStore.Services.Identity.Application.Commands;
+using MobileStore.Services.Identity.Application.Settings;
 using MobileStore.Services.Identity.Domain.Entities;
 using MobileStore.Services.Identity.Infrastructure.DbContexts;
-using MobileStore.Services.Identity.WebApi.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +35,7 @@ namespace MobileStore.Services.Identity.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<JwtSettings>(Configuration.GetSection("Jwt"));
+            
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("MobileStore.Services.Identity.Infrastructure")));
 
@@ -62,6 +63,7 @@ namespace MobileStore.Services.Identity.WebApi
             });
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddMediatR(typeof(RegisterCommand).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(LoginCommand).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

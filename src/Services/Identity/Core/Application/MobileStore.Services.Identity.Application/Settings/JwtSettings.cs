@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MobileStore.Services.Identity.WebApi.Settings
+namespace MobileStore.Services.Identity.Application.Settings
 {
     public class JwtSettings
     {
