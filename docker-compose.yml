@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  mobilestore.services.identity.webapi:
+    image: ${DOCKER_REGISTRY-}mobilestoreservicesidentitywebapi
+    build:
+      context: .
+      dockerfile: src/Services/Identity/WebApi/MobileStore.Services.Identity.WebApi/Dockerfile
+
+  mobilestore.services.catalog.webapi:
+    image: ${DOCKER_REGISTRY-}mobilestoreservicescatalogwebapi
+    build:
+      context: .
+      dockerfile: src/Services/Catalog/WebApi/MobileStore.Services.Catalog.WebApi/Dockerfile
+

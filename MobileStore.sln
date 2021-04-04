@@ -65,6 +65,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileStore.Services.Catalo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileStore.Services.Catalog.WebApi", "src\Services\Catalog\WebApi\MobileStore.Services.Catalog.WebApi\MobileStore.Services.Catalog.WebApi.csproj", "{C27DB2BD-FB8B-4FCA-9CF3-99F321ED3BA5}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{8BAA4C15-BF4F-4791-894D-6C0389C7356B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{C27DB2BD-FB8B-4FCA-9CF3-99F321ED3BA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C27DB2BD-FB8B-4FCA-9CF3-99F321ED3BA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C27DB2BD-FB8B-4FCA-9CF3-99F321ED3BA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BAA4C15-BF4F-4791-894D-6C0389C7356B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BAA4C15-BF4F-4791-894D-6C0389C7356B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BAA4C15-BF4F-4791-894D-6C0389C7356B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BAA4C15-BF4F-4791-894D-6C0389C7356B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
