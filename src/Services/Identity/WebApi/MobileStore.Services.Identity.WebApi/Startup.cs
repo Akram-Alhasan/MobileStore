@@ -14,6 +14,7 @@ using MobileStore.Services.Identity.Application.Commands;
 using MobileStore.Services.Identity.Application.Settings;
 using MobileStore.Services.Identity.Domain.Entities;
 using MobileStore.Services.Identity.Infrastructure.DbContexts;
+using MobileStore.Services.Identity.WebApi.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +68,7 @@ namespace MobileStore.Services.Identity.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env , RoleManager<Role> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -92,6 +93,8 @@ namespace MobileStore.Services.Identity.WebApi
                 c.RoutePrefix = "";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Music V1");
             });
+
+            UserRoleSeed.createSeed(roleManager).Wait();
         }
     }
 }
