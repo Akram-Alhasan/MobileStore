@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using MobileStore.Services.Catalog.Application;
 using MobileStore.Services.Catalog.Infrastructure;
 using MobileStore.Services.Catalog.Infrastructure.ServiceDbContext;
+using MobileStore.Services.Catalog.WebApi.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,18 +40,58 @@ namespace MobileStore.Services.Catalog.WebApi
             services.AddApplicationLayer();
 
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://localhost:44340";
+                options.RequireHttpsMetadata = false;
+                options.Audience = "Catalog.Api";
+            });
+            services.AddAuthorization();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                        builder.AllowAnyHeader();
+                        builder.AllowAnyMethod();
+                    });
+            });
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "My Music", Version = "v1" });
-
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                //options.DescribeAllEnumsAsStrings();
+                options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Description = "JWT containing userid claim",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
+                    Title = "eShopOnContainers - Ordering HTTP API",
+                    Version = "v1",
+                    Description = "The Ordering Service HTTP API"
                 });
+                options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows()
+                    {
+                        Password = new OpenApiOAuthFlow()
+                        {
+                            
+                            AuthorizationUrl = new Uri($"https://localhost:44340/connect/authorize"),
+                            TokenUrl = new Uri($"https://localhost:44340/connect/token"),
+                            Scopes = new Dictionary<string, string>()
+                            {
+                                { "Catalog.Api", "Catalog.Api" }
+                            }
+                            
+                            
+                        }
+                    }
+                });
+
+                options.OperationFilter<AuthorizeCheckOperationFilter>();
             });
 
         }
@@ -61,23 +103,33 @@ namespace MobileStore.Services.Catalog.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            
 
             app.UseHttpsRedirection();
 
+            
             app.UseRouting();
+
+            app.UseCors();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.RoutePrefix = "";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Music V1");
+                c.OAuthClientId("Catalog.Api.Swagger");
+                c.OAuthClientSecret("CatalogSecret");
+            }); 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
+
         }
     }
 }

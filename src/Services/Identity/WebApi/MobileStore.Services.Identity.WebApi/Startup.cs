@@ -1,4 +1,6 @@
 using MediatR;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +16,7 @@ using MobileStore.Services.Identity.Application.Commands;
 using MobileStore.Services.Identity.Application.Settings;
 using MobileStore.Services.Identity.Domain.Entities;
 using MobileStore.Services.Identity.Infrastructure.DbContexts;
+using MobileStore.Services.Identity.WebApi.Configurations;
 using MobileStore.Services.Identity.WebApi.Seeds;
 using System;
 using System.Collections.Generic;
@@ -50,6 +53,25 @@ namespace MobileStore.Services.Identity.WebApi
             }
            ).AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+
+            services.AddIdentityServer()
+               .AddInMemoryClients(ClientsConfiguration.Clients)
+               .AddInMemoryApiResources(ClientsConfiguration.Apis)
+               .AddInMemoryIdentityResources(ClientsConfiguration.IdentityResources)
+               .AddDeveloperSigningCredential()
+               .AddAspNetIdentity<User>();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                        builder.AllowAnyHeader();
+                        builder.AllowAnyMethod();
+                    });
+            });
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "My Music", Version = "v1" });
@@ -62,6 +84,7 @@ namespace MobileStore.Services.Identity.WebApi
                     Type = SecuritySchemeType.ApiKey,
                 });
             });
+
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddMediatR(typeof(RegisterCommand).GetTypeInfo().Assembly);
             services.AddMediatR(typeof(LoginCommand).GetTypeInfo().Assembly);
@@ -77,11 +100,13 @@ namespace MobileStore.Services.Identity.WebApi
 
             app.UseHttpsRedirection();
 
+            
+
             app.UseRouting();
 
-            app.UseAuthentication();
+            app.UseCors();
 
-            app.UseAuthorization();
+            app.UseIdentityServer();
 
             app.UseEndpoints(endpoints =>
             {

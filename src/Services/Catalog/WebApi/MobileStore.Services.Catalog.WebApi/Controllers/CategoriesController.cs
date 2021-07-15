@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MobileStore.Services.Catalog.Application.Commands.Category;
@@ -19,6 +20,7 @@ namespace MobileStore.Services.Catalog.WebApi.Controllers
             _mediator = mediator;
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(CreateCategoryCommand command)
         {
             var result = await _mediator.Send(command);

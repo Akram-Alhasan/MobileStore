@@ -25,11 +25,13 @@ namespace MobileStore.Services.Identity.Application.Commands
         public class Handler : IRequestHandler<LoginCommand , GResult<string>>
         {
             private readonly UserManager<User> _userManager;
+            private readonly SignInManager<User> _signInManager;
             private readonly IOptions<JwtSettings> _jwtSettings; 
 
-            public Handler(UserManager<User> userManager , IOptions<JwtSettings> jwtSettings)
+            public Handler(UserManager<User> userManager , SignInManager<User> signInManager, IOptions<JwtSettings> jwtSettings)
             {
                 _userManager = userManager;
+                _signInManager = signInManager;
                 _jwtSettings = jwtSettings; 
             }
 
@@ -45,9 +47,12 @@ namespace MobileStore.Services.Identity.Application.Commands
                     });
                 }
 
-                var userSigninResult = await _userManager.CheckPasswordAsync(user, request.Password);
+                //var userSigninResult = await _userManager.CheckPasswordAsync(user, request.Password);
+                //var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberLogin, lockoutOnFailure: true);
 
-                if (userSigninResult)
+                var userSignInResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password , true);
+
+                if (userSignInResult.Succeeded)
                 {
                     var roles = await _userManager.GetRolesAsync(user);
                     return GResult<string>.Success(GenerateJwt(user,roles));
