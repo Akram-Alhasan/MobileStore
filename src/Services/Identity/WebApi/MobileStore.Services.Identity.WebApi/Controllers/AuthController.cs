@@ -44,19 +44,5 @@ namespace MobileStore.Services.Identity.WebApi.Controllers
             }
             return BadRequest(result.Errors);
         }
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginCommand command)
-        {
-            var result =await  _mediator.Send(command);
-            if(result.Succeeded)
-            {
-                return Ok(new
-                {
-                    token = result.Payload
-                });
-            }
-            return BadRequest(result.Errors);
-        }
     }
 }
