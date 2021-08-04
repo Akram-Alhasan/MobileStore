@@ -67,9 +67,9 @@ namespace MobileStore.Services.Catalog.WebApi
                 //options.DescribeAllEnumsAsStrings();
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "eShopOnContainers - Ordering HTTP API",
+                    Title = "MobileStore - Catalog HTTP API",
                     Version = "v1",
-                    Description = "The Ordering Service HTTP API"
+                    Description = "The Catalog Service HTTP API"
                 });
                 options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
@@ -121,7 +121,7 @@ namespace MobileStore.Services.Catalog.WebApi
             app.UseSwaggerUI(c =>
             {
                 c.RoutePrefix = "";
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Music V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MobileStore V1");
                 c.OAuthClientId("Catalog.Api.Swagger");
                 c.OAuthClientSecret("CatalogSecret");
             }); 

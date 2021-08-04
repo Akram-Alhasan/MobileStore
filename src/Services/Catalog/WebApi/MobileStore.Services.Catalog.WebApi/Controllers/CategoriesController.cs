@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MobileStore.Services.Catalog.Application.Commands.Category;
+using MobileStore.Services.Catalog.Application.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,17 @@ namespace MobileStore.Services.Catalog.WebApi.Controllers
         {
             _mediator = mediator;
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _mediator.Send(new FindAllQuery());
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Errors);
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Create(CreateCategoryCommand command)

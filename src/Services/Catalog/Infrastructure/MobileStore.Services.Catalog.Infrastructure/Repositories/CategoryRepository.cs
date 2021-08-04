@@ -1,4 +1,5 @@
-﻿using MobileStore.BuildingBlocks.Shared.Shared.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MobileStore.BuildingBlocks.Shared.Shared.Interfaces;
 using MobileStore.Services.Catalog.Domain.Entities.Category;
 using MobileStore.Services.Catalog.Domain.Interfaces.IRepositories;
 using MobileStore.Services.Catalog.Infrastructure.ServiceDbContext;
@@ -33,9 +34,10 @@ namespace MobileStore.Services.Catalog.Infrastructure.Repositories
             return result; 
         }
 
-        public Task<Category> FindAsync(string BuyerIdentityGuid)
+        public async Task<List<Category>> FindAllAsync()
         {
-            throw new NotImplementedException();
+            var result = await _context.Categories.ToListAsync();
+            return result;
         }
 
         public Task<Category> FindByIdAsync(string id)

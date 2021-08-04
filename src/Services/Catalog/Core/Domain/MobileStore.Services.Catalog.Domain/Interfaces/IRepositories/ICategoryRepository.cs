@@ -11,7 +11,7 @@ namespace MobileStore.Services.Catalog.Domain.Interfaces.IRepositories
     {
         Task<Category> AddAsync(Category buyer);
         Category Update(Category buyer);
-        Task<Category> FindAsync(string BuyerIdentityGuid);
+        Task<List<Category>> FindAllAsync();
         Task<Category> FindByIdAsync(string id);
     }
 }

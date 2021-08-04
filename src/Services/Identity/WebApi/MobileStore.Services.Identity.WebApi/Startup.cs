@@ -87,7 +87,7 @@ namespace MobileStore.Services.Identity.WebApi
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddMediatR(typeof(RegisterCommand).GetTypeInfo().Assembly);
-            services.AddMediatR(typeof(LoginCommand).GetTypeInfo().Assembly);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
