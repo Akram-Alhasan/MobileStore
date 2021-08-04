@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20210331190725_AddCategory.cs" />
     <Compile Remove="Migrations\20210331190725_AddCategory.Designer.cs" />
+    <Compile Remove="Migrations\20210804180341_Add-Mobile-Entity.cs" />
+    <Compile Remove="Migrations\20210804180341_Add-Mobile-Entity.Designer.cs" />
   </ItemGroup>
     <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MobileStore.BuildingBlocks.Shared.Shared.Interfaces;
 using MobileStore.Services.Catalog.Domain.Entities.Category;
+using MobileStore.Services.Catalog.Domain.Entities.Mobile;
 using MobileStore.Services.Catalog.Infrastructure.FluentConfigurations;
 using MobileStore.Services.Identity.Domain.Entities;
 using System;
@@ -21,9 +22,17 @@ namespace MobileStore.Services.Catalog.Infrastructure.ServiceDbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+
+            modelBuilder.Entity<Mobile>()
+            .HasOne(a => a.MobileAttribute)
+            .WithOne(a => a.Mobile)
+            .HasForeignKey<MobileAttribute>(c => c.MobileId);
+
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Mobile> Mobiles { get; set; }
+        public DbSet<MobileAttribute> MobileAttributes { get; set; }
     }
 }
