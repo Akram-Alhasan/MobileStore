@@ -17,6 +17,9 @@ namespace MobileStore.Services.Catalog.Application.Commands.Mobile
         public string Name { get; set; }
 
         [Required]
+        public decimal Price { get; set; }
+
+        [Required]
         public Guid CategoryId { get; set; }
 
         public Dictionary<string, string> Attributes { get; set; } 
@@ -32,6 +35,7 @@ namespace MobileStore.Services.Catalog.Application.Commands.Mobile
                 var mobile = new MobileEntity.Mobile
                 {
                     Name = request.Name,
+                    Price = request.Price,
                     CategoryId = request.CategoryId
                 };
                 var attributes = new List<MobileEntity.MobileAttribute>();
