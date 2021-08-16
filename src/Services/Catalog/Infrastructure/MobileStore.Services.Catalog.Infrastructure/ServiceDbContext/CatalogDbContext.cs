@@ -23,11 +23,6 @@ namespace MobileStore.Services.Catalog.Infrastructure.ServiceDbContext
         {
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
 
-            modelBuilder.Entity<Mobile>()
-            .HasOne(a => a.MobileAttribute)
-            .WithOne(a => a.Mobile)
-            .HasForeignKey<MobileAttribute>(c => c.MobileId);
-
             base.OnModelCreating(modelBuilder);
         }
 

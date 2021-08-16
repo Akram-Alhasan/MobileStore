@@ -13,9 +13,7 @@ namespace MobileStore.Services.Catalog.Domain.Entities.Mobile
 
         public string Price { get; set; }
 
-        public Guid MobileAttributeId { get; set; }
-
-        public MobileAttribute MobileAttribute { get; set; }
+        public List<MobileAttribute> MobileAttribute { get; set; }
 
         public Guid CategoryId { get; set; }
 

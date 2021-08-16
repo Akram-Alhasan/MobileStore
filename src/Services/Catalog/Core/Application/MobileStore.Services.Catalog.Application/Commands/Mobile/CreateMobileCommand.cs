@@ -16,6 +16,7 @@ namespace MobileStore.Services.Catalog.Application.Commands.Mobile
         [Required]
         public string Name { get; set; }
 
+        public Dictionary<string, string> Attributes { get; set; } 
         public class Handler : IRequestHandler<CreateMobileCommand, GResult>
         {
             private readonly IMobileRepository _mobileRepository;
@@ -25,11 +26,20 @@ namespace MobileStore.Services.Catalog.Application.Commands.Mobile
             }
             public async Task<GResult> Handle(CreateMobileCommand request, CancellationToken cancellationToken)
             {
-                var category = new MobileEntity.Mobile
+                var mobile = new MobileEntity.Mobile
                 {
                     Name = request.Name
                 };
-                var result = await _mobileRepository.AddAsync(category);
+                var attributes = new List<MobileEntity.MobileAttribute>();
+                foreach(var attr in request.Attributes)
+                {
+                    attributes.Add(new MobileEntity.MobileAttribute { Key = attr.Key, Value = attr.Value, MobileId = mobile.Id});
+                }
+                mobile.MobileAttribute = attributes; 
+
+                
+                
+                var result = await _mobileRepository.AddAsync(mobile);
                 if (result != null)
                 {
                     return GResult.Success;
