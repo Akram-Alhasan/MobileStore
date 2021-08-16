@@ -14,6 +14,7 @@ namespace MobileStore.Services.Catalog.Infrastructure
         {
             var assemblies = Assembly.GetExecutingAssembly();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IMobileRepository, MobileRepository>();
             return services;
         }
     }
