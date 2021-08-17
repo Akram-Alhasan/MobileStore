@@ -3,6 +3,7 @@ using MobileStore.BuildingBlocks.Shared.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CategoryEntity = MobileStore.Services.Catalog.Domain.Entities.Category.Category; 
 
 namespace MobileStore.Services.Catalog.Domain.Entities.Mobile
 {
@@ -15,7 +16,10 @@ namespace MobileStore.Services.Catalog.Domain.Entities.Mobile
 
         public List<MobileAttribute> MobileAttribute { get; set; }
 
+
         public Guid CategoryId { get; set; }
+
+        public CategoryEntity Category { get; set; }
 
     }
 }
